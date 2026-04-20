@@ -1,5 +1,7 @@
 "use client";
 
+import ReactMarkdown from "react-markdown";
+
 import { useState } from "react";
 
 type Message = {
@@ -69,7 +71,13 @@ export default function Home() {
                     : "bg-gray-200 text-gray-900"
                 }`}
               >
-                {message.content}
+                {message.role === "assistant" ? (
+                  <div className="space-y-2 [&_ul]:list-disc [&_ul]:ml-4 [&_ol]:list-decimal [&_ol]:ml-4 [&_strong]:font-semibold">
+                    <ReactMarkdown>{message.content}</ReactMarkdown>
+                  </div>
+                ) : (
+                  message.content
+                )}
               </div>
             </div>
           ))}
