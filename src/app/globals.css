@@ -11,3 +11,22 @@ body {
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+@keyframes vex-bob {
+  0%, 100% { transform: translateY(0) rotate(-2deg); }
+  50% { transform: translateY(-3px) rotate(2deg); }
+}
+
+.vex-bob {
+  animation: vex-bob 1.6s ease-in-out infinite;
+  transform-origin: center bottom;
+}
+
+@keyframes vex-dot {
+  0%, 80%, 100% { opacity: 0.25; transform: translateY(0); }
+  40% { opacity: 1; transform: translateY(-2px); }
+}
+
+.vex-dot {
+  animation: vex-dot 1.2s ease-in-out infinite;
+}

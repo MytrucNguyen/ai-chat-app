@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
+import Image from "next/image";
 import ReactMarkdown from "react-markdown";
 import { Sun, Moon, Trash2 } from "lucide-react";
 
@@ -8,6 +9,33 @@ type Message = {
   role: "user" | "assistant";
   content: string;
 };
+
+function VexAvatar({
+  size = 32,
+  className = "",
+  animated = false,
+}: {
+  size?: number;
+  className?: string;
+  animated?: boolean;
+}) {
+  return (
+    <div
+      className={`shrink-0 overflow-hidden rounded-full bg-teal-50 ring-1 ring-teal-200 dark:bg-teal-950 dark:ring-teal-800 ${
+        animated ? "vex-bob" : ""
+      } ${className}`}
+      style={{ width: size, height: size }}
+    >
+      <Image
+        src="/images/vex.png"
+        alt="Vex"
+        width={size}
+        height={size}
+        className="h-full w-full object-cover"
+      />
+    </div>
+  );
+}
 
 export default function Home() {
   const [messages, setMessages] = useState<Message[]>([]);
@@ -109,7 +137,12 @@ export default function Home() {
     <main className="flex min-h-screen flex-col bg-gray-50 text-gray-900 dark:bg-gray-900 dark:text-gray-100 transition-colors">
       <div className="flex flex-1 flex-col max-w-3xl w-full mx-auto p-4">
         <div className="flex items-center justify-between mb-4">
-          <h1 className="text-2xl font-bold">AI Chat</h1>
+          <div className="flex items-center gap-2.5">
+            <VexAvatar size={32} />
+            <h1 className="text-2xl font-bold tracking-tight">
+              Vex<span className="text-teal-500"> AI</span> Chat
+            </h1>
+          </div>
           <div className="flex items-center gap-2">
             {messages.length > 0 && (
               <button
@@ -132,19 +165,25 @@ export default function Home() {
 
         <div className="flex-1 space-y-4 mb-4 overflow-y-auto">
           {messages.length === 0 && !isLoading && (
-            <div className="flex h-full flex-col items-center justify-center text-center text-gray-400 dark:text-gray-500 py-20">
-              <h2 className="text-xl font-medium mb-2">Start a conversation</h2>
-              <p className="text-sm">Ask me anything. I&apos;m here to help.</p>
+            <div className="flex h-full flex-col items-center justify-center text-center py-20">
+              <VexAvatar size={112} className="mb-4 shadow-lg" animated />
+              <h2 className="text-2xl font-semibold mb-2">
+                Hi, I&apos;m Vex!
+              </h2>
+              <p className="text-sm text-gray-500 dark:text-gray-400 max-w-xs">
+                Your nine-tailed kitsune companion. Ask me anything to get started.
+              </p>
             </div>
           )}
 
           {messages.map((message, index) => (
             <div
               key={index}
-              className={`flex ${
+              className={`flex gap-2 ${
                 message.role === "user" ? "justify-end" : "justify-start"
               }`}
             >
+              {message.role === "assistant" && <VexAvatar size={32} />}
               <div
                 className={`max-w-[75%] rounded-2xl px-4 py-2 ${
                   message.role === "user"
@@ -164,9 +203,21 @@ export default function Home() {
           ))}
 
           {isLoading && messages[messages.length - 1]?.role !== "assistant" && (
-            <div className="flex justify-start">
-              <div className="max-w-[75%] rounded-2xl bg-gray-200 dark:bg-gray-800 px-4 py-2 text-gray-500 dark:text-gray-400">
-                Thinking...
+            <div className="flex gap-2 justify-start">
+              <VexAvatar size={32} animated />
+              <div className="flex items-center gap-1 rounded-2xl bg-gray-200 dark:bg-gray-800 px-4 py-3">
+                <span
+                  className="vex-dot inline-block h-1.5 w-1.5 rounded-full bg-gray-500 dark:bg-gray-400"
+                  style={{ animationDelay: "0ms" }}
+                />
+                <span
+                  className="vex-dot inline-block h-1.5 w-1.5 rounded-full bg-gray-500 dark:bg-gray-400"
+                  style={{ animationDelay: "150ms" }}
+                />
+                <span
+                  className="vex-dot inline-block h-1.5 w-1.5 rounded-full bg-gray-500 dark:bg-gray-400"
+                  style={{ animationDelay: "300ms" }}
+                />
               </div>
             </div>
           )}
