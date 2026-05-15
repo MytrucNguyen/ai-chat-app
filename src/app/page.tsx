@@ -10,7 +10,7 @@ type Message = {
   content: string;
 };
 
-function VexAvatar({
+function WukoAvatar({
   size = 32,
   className = "",
   animated = false,
@@ -22,13 +22,13 @@ function VexAvatar({
   return (
     <div
       className={`shrink-0 overflow-hidden rounded-full bg-teal-50 ring-1 ring-teal-200 dark:bg-teal-950 dark:ring-teal-800 ${
-        animated ? "vex-bob" : ""
+        animated ? "wuko-bob" : ""
       } ${className}`}
       style={{ width: size, height: size }}
     >
       <Image
         src="/images/vex.png"
-        alt="Vex"
+        alt="Wuko"
         width={size}
         height={size}
         className="h-full w-full object-cover"
@@ -138,9 +138,9 @@ export default function Home() {
       <div className="flex flex-1 flex-col max-w-3xl w-full mx-auto p-4">
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-2.5">
-            <VexAvatar size={32} />
+            <WukoAvatar size={32} />
             <h1 className="text-2xl font-bold tracking-tight">
-              Vex<span className="text-teal-500"> AI</span> Chat
+              Wuko<span className="text-teal-500"> AI</span> Chat
             </h1>
           </div>
           <div className="flex items-center gap-2">
@@ -166,9 +166,9 @@ export default function Home() {
         <div className="flex-1 space-y-4 mb-4 overflow-y-auto">
           {messages.length === 0 && !isLoading && (
             <div className="flex h-full flex-col items-center justify-center text-center py-20">
-              <VexAvatar size={112} className="mb-4 shadow-lg" animated />
+              <WukoAvatar size={112} className="mb-4 shadow-lg" animated />
               <h2 className="text-2xl font-semibold mb-2">
-                Hi, I&apos;m Vex!
+                Hi, I&apos;m Wuko!
               </h2>
               <p className="text-sm text-gray-500 dark:text-gray-400 max-w-xs">
                 Your nine-tailed kitsune companion. Ask me anything to get started.
@@ -183,7 +183,7 @@ export default function Home() {
                 message.role === "user" ? "justify-end" : "justify-start"
               }`}
             >
-              {message.role === "assistant" && <VexAvatar size={32} />}
+              {message.role === "assistant" && <WukoAvatar size={32} />}
               <div
                 className={`max-w-[75%] rounded-2xl px-4 py-2 ${
                   message.role === "user"
@@ -204,18 +204,18 @@ export default function Home() {
 
           {isLoading && messages[messages.length - 1]?.role !== "assistant" && (
             <div className="flex gap-2 justify-start">
-              <VexAvatar size={32} animated />
+              <WukoAvatar size={32} animated />
               <div className="flex items-center gap-1 rounded-2xl bg-gray-200 dark:bg-gray-800 px-4 py-3">
                 <span
-                  className="vex-dot inline-block h-1.5 w-1.5 rounded-full bg-gray-500 dark:bg-gray-400"
+                  className="wuko-dot inline-block h-1.5 w-1.5 rounded-full bg-gray-500 dark:bg-gray-400"
                   style={{ animationDelay: "0ms" }}
                 />
                 <span
-                  className="vex-dot inline-block h-1.5 w-1.5 rounded-full bg-gray-500 dark:bg-gray-400"
+                  className="wuko-dot inline-block h-1.5 w-1.5 rounded-full bg-gray-500 dark:bg-gray-400"
                   style={{ animationDelay: "150ms" }}
                 />
                 <span
-                  className="vex-dot inline-block h-1.5 w-1.5 rounded-full bg-gray-500 dark:bg-gray-400"
+                  className="wuko-dot inline-block h-1.5 w-1.5 rounded-full bg-gray-500 dark:bg-gray-400"
                   style={{ animationDelay: "300ms" }}
                 />
               </div>

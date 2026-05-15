@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Vex AI Chat",
-  description: "Chat with Vex, your nine-tailed kitsune AI companion.",
+  title: "Wuko AI Chat",
+  description: "Chat with Wuko, your nine-tailed kitsune AI companion.",
 };
 
 export default function RootLayout({
